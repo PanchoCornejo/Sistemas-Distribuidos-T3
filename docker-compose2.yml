@@ -1,0 +1,36 @@
+version: '2'
+
+networks:
+  cluster:
+    driver: bridge
+services:
+  cassandra-node1:
+    image: bitnami/cassandra:latest
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2,cassandra-node3
+      - CASSANDRA_PASSWORD_SEEDER=yes
+      - CASSANDRA_PASSWORD=password123
+    networks:
+      - cluster
+
+  cassandra-node2:
+    image: bitnami/cassandra:latest
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2,cassandra-node3
+      - CASSANDRA_PASSWORD=password123
+    networks:
+      - cluster
+
+  cassandra-node3:
+    image: bitnami/cassandra:latest
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2,cassandra-node3
+      - CASSANDRA_PASSWORD=password123
+    networks:
+      - cluster
+volumes:
+  cassandra_data:
+    driver: local
