@@ -7,13 +7,13 @@ const cassandra = require('cassandra-driver');
 //conexion con cassandra
 let authProvider = new cassandra.auth.PlainTextAuthProvider('cassandra','cassandra');
 const client = new cassandra.Client({
-  contactPoints: ['tarea3-sd_cassandra-node1'],
+  contactPoints: ['172.22.0.2'],
   authProvider: authProvider,
   localDataCenter: 'datacenter1',
   keyspace: 'medicina'
 });
 const client2 = new cassandra.Client({
-contactPoints: ['tarea3-sd_cassandra-node1'],
+contactPoints: ['172.22.0.2'],
   authProvider: authProvider,
   localDataCenter: 'datacenter1',
   keyspace: 'medicina2'
